@@ -1,0 +1,91 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local Main = Instance.new("ScreenGui")
+local GengarsAdoptMe = Instance.new("Frame")
+local Background = Instance.new("ImageLabel")
+local Activate = Instance.new("ImageButton")
+local TextLabel = Instance.new("TextLabel")
+local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+local gengarlogo = Instance.new("ImageLabel")
+
+-- Properties:
+
+Main.Name = "Main"
+Main.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Main.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+GengarsAdoptMe.Name = "GengarsAdoptMe"
+GengarsAdoptMe.Parent = Main
+GengarsAdoptMe.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+GengarsAdoptMe.BackgroundTransparency = 1.000
+GengarsAdoptMe.BorderColor3 = Color3.fromRGB(27, 42, 53)
+GengarsAdoptMe.Position = UDim2.new(0.344, 0, 0.335, 0)
+GengarsAdoptMe.Size = UDim2.new(0.311, 0, 0.329, 0)
+GengarsAdoptMe.Active = true
+GengarsAdoptMe.Draggable = true
+
+Background.Name = "Background"
+Background.Parent = GengarsAdoptMe
+Background.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Background.BackgroundTransparency = 1.000
+Background.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Background.Size = UDim2.new(1, 0, 1, 0)
+Background.ZIndex = 3
+Background.Image = "rbxassetid://4966060682"
+Background.ScaleType = Enum.ScaleType.Fit
+
+Activate.Name = "Activate"
+Activate.Parent = GengarsAdoptMe
+Activate.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Activate.BackgroundTransparency = 1.000
+Activate.Position = UDim2.new(0.189, 0, 0.678, 0)
+Activate.Size = UDim2.new(0.622, 0, 0.513, 0)
+Activate.ZIndex = 4
+Activate.Image = "http://www.roblox.com/asset/?id=128286347071704"
+Activate.ScaleType = Enum.ScaleType.Fit
+
+TextLabel.Parent = GengarsAdoptMe
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.Position = UDim2.new(0, 0, 0.242, 0)
+TextLabel.Size = UDim2.new(1, 0, 0.508, 0)
+TextLabel.ZIndex = 4
+TextLabel.Font = Enum.Font.GothamBlack
+TextLabel.Text = "Gengars Star Hunter!"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextScaled = true
+TextLabel.TextStrokeColor3 = Color3.fromRGB(201, 145, 54)
+TextLabel.TextStrokeTransparency = 0.000
+TextLabel.TextWrapped = true
+
+UIAspectRatioConstraint.Parent = GengarsAdoptMe
+UIAspectRatioConstraint.AspectRatio = 2.000
+UIAspectRatioConstraint.AspectType = Enum.AspectType.ScaleWithParentSize
+
+gengarlogo.Name = "gengar logo"
+gengarlogo.Parent = GengarsAdoptMe
+gengarlogo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+gengarlogo.BackgroundTransparency = 1.000
+gengarlogo.Position = UDim2.new(0.460, 0, 0.193, 0)
+gengarlogo.Size = UDim2.new(0.727, 0, 0.727, 0)
+gengarlogo.ZIndex = 3
+gengarlogo.Image = "http://www.roblox.com/asset/?id=91911099692975"
+gengarlogo.ImageTransparency = 0.630
+gengarlogo.ScaleType = Enum.ScaleType.Fit
+
+-- Functionality (New Button Behavior):
+Activate.MouseButton1Click:Connect(function()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+    for _, v in ipairs(workspace.Collectables:GetDescendants()) do
+        if v.Name == "Collider" and v:IsA("BasePart") then
+            humanoidRootPart.CFrame = v.CFrame
+            wait(1)
+        end
+    end
+end)
